@@ -4,8 +4,8 @@ import * as users from './lambdas';
 
 const API_ROUTES: Route[] = [
     { path: '/users/create', method: 'POST', eventHandler: users.createUser },
-    { path: '/users/{id}', method: 'PATCH', eventHandler: users.updateUser },
-    { path: '/users/{id}', method: 'DELETE', eventHandler: users.deleteUser },
+    { path: '/users/{id}/update', method: 'PATCH', eventHandler: users.updateUser },
+    { path: '/users/{id}/delete', method: 'POST', eventHandler: users.deleteUser },
     { path: '/users', method: 'GET', eventHandler: users.getAllUsers }
 ]
 
