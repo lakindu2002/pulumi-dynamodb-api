@@ -1,6 +1,5 @@
 import * as aws from '@pulumi/aws';
 import * as awsx from '@pulumi/awsx';
-import { randomUUID } from 'crypto';
 import { Users } from '../dynamo/users';
 
 export const createUser = new aws.lambda.CallbackFunction('createUser', {
@@ -8,7 +7,8 @@ export const createUser = new aws.lambda.CallbackFunction('createUser', {
         const { body = '{}' } = event;
         const parsedBody = JSON.parse(body || '{}');
         const { name, email, age } = parsedBody; // obtain event body sent from client
-        const userId = randomUUID();
+        const randomId = Math.random().toString(36).substring(2, 15);
+        const userId = randomId;
 
         const FIVE_DAYS_AFTER_TODAY = new Date(Date.now() + (1000 * 60 * 60 * 24 * 5));
 
