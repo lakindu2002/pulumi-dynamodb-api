@@ -17,5 +17,9 @@ export const Users = new aws.dynamodb.Table("users", {
     rangeKey: 'createdAt',
     billingMode: 'PROVISIONED', // defaults to provisioned, if no value is specifed. supports "PAY_PER_REQUEST"
     writeCapacity: 30,
-    readCapacity: 30
+    readCapacity: 30,
+    ttl: {
+        enabled: true,
+        attributeName: 'deleteAt'
+    }
 });
