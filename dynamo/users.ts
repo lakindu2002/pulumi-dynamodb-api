@@ -31,7 +31,9 @@ export const Users = new aws.dynamodb.Table("users", {
             hashKey: 'gsiPk',
             rangeKey: 'gsiSk',
             projectionType: 'INCLUDE', // project only required attributes
-            nonKeyAttributes: ['id', 'name', 'email']
+            nonKeyAttributes: ['id', 'name', 'email'],
+            writeCapacity: 30,
+            readCapacity: 30
         }
     ],
     localSecondaryIndexes: [
