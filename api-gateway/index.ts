@@ -11,4 +11,7 @@ const API_ROUTES: Route[] = [
 
 export const apiGateway = new awsx.apigateway.API('rest-api', {
     routes: API_ROUTES,
+    restApiArgs: {
+        binaryMediaTypes: []
+    }
 })
