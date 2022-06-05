@@ -10,7 +10,7 @@ export const createUser = new aws.lambda.CallbackFunction('createUser', {
         const randomId = Math.random().toString(36).substring(2, 15);
         const userId = randomId;
 
-        const FIVE_DAYS_AFTER_TODAY = new Date(Date.now() + (1000 * 60 * 60 * 24 * 5));
+        const FIVE_DAYS_AFTER_TODAY = new Date(Date.now() + (1000 * 60 * 60 * 24 * 5)).getTime();
 
         // initialize new user
         const user = {
