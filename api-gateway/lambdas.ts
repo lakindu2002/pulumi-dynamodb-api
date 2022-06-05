@@ -60,14 +60,15 @@ export const getAllUsers = new aws.lambda.CallbackFunction('getAllUsers', {
 
 export const deleteUser = new aws.lambda.CallbackFunction('deleteUser', {
     callback: async (event: awsx.apigateway.Request): Promise<awsx.apigateway.Response> => {
-        const { pathParameters = {} } = event;
-        const { id } = pathParameters as any;
+        const { body = '{}' } = event;
+        const { id, createdAt } = JSON.parse(body || '{}')
         const documentClient = new aws.sdk.DynamoDB.DocumentClient();
 
         await documentClient.delete({
             TableName: Users.name.get(),
             Key: {
-                id
+                id,
+                createdAt
             }
         }).promise();
 
